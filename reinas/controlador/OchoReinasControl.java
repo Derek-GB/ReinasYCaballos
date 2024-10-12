@@ -24,6 +24,7 @@ public class OchoReinasControl {
         if (modelo.resolver(0)) {
             vista.imprimirTablero(modelo.getTablero());
         } else {
+            vista.imprimirTablero(modelo.getTablero());
             vista.mostrarMensaje("No hay solución");
         }
     }
