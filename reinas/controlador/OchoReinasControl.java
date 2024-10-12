@@ -21,7 +21,7 @@ public class OchoReinasControl {
     }
 
     public void resolverProblema() {
-        if (modelo.resolver(1)) {
+        if (modelo.resolver(0)) {
             vista.imprimirTablero(modelo.getTablero());
         } else {
             vista.mostrarMensaje("No hay solución");
