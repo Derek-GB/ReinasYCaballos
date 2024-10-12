@@ -59,6 +59,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel34 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
         jPanel28 = new javax.swing.JPanel();
+        jPanel35 = new javax.swing.JPanel();
         tablero = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -561,6 +562,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 40, 30));
 
+        jPanel35.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel35.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
+        jPanel35.setLayout(jPanel35Layout);
+        jPanel35Layout.setHorizontalGroup(
+            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+        jPanel35Layout.setVerticalGroup(
+            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 40, 40));
+
         tablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MiniTablero.jpg"))); // NOI18N
         tablero.setText("jLabel1");
         getContentPane().add(tablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, -1));
@@ -631,6 +648,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
