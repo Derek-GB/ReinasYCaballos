@@ -28,35 +28,28 @@ public class CaballoModel {
     }
 
     public boolean moverCaballo(int x, int y, int pasos) {
-        // Verifica si el movimiento es dentro del tablero y no ha sido visitado
         if (x < 0 || x >= 8|| y < 0 || y >= 8 || visitados[x][y]) {
-            return false; // Movimiento no válido
+            return false; 
         }
 
-        // Marca la posición como visitada y guarda el movimiento
         visitados[x][y] = true;
         tablero[x][y] = pasos;
 
-        // Si hemos realizado 64 movimientos, significa que el caballo ha visitado todas las casillas
         if (pasos == 8 * 8 - 1) {
             return true;
         }
 
-        // Intenta mover el caballo a las posiciones válidas
         for (int[] movimiento : MOVIMIENTOS_CABALLO) {
             int nuevaX = x + movimiento[0];
             int nuevaY = y + movimiento[1];
 
-            // Llama recursivamente a la función
             if (moverCaballo(nuevaX, nuevaY, pasos + 1)) {
-                return true; // Si se encuentra un camino, devuelve true
+                return true; 
             }
         }
-
-        // Desmarca la posición (backtracking)
         visitados[x][y] = false;
-        tablero[x][y] = 0; // Reinicia el valor del tablero
-        return false; // No se encontró un camino
+        tablero[x][y] = 0;
+        return false; 
     }
 
     public void mostrarTablero() {

@@ -20,19 +20,17 @@ public class Prueba {
         CaballoModel caballo;
 
         while (true) {
-            caballo = new CaballoModel(); // Reinicia el tablero para cada intento
+            caballo = new CaballoModel();
 
             System.out.print("Ingrese la posición inicial del caballo (x) o un valor negativo para salir: ");
             int inicioX = scanner.nextInt();
 
             if (inicioX < 0) {
-                break; // Sale del ciclo si se ingresa un valor negativo
+                break;
             }
 
             System.out.print("Ingrese la posición inicial del caballo (y): ");
             int inicioY = scanner.nextInt();
-
-            // Verifica que las posiciones estén dentro del rango permitido
             if (inicioX < 0 || inicioX >= 8 || inicioY < 0 || inicioY >= 8) {
                 System.out.println("Las posiciones deben estar entre 0 y 7 .");
             } else {
@@ -44,7 +42,7 @@ public class Prueba {
                 }
             }
         }
-        scanner.close(); // Cierra el escáner
+        scanner.close();
         System.out.println("Saliendo del programa.");
     }
 }
