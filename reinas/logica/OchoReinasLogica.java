@@ -4,6 +4,9 @@
  */
 package reinas.logica;
 
+import reinas.modelo.Casilla;
+import reinas.modelo.Estado;
+
 /**
  *
  * @author d2tod
@@ -12,11 +15,16 @@ public class OchoReinasLogica {
 
     private static final int N = 8;
     private int cont = 0;
-    private int[][] tablero = new int[N][N];
+    private Casilla [][] tablero;
 
-    public int[][] getTablero() {
+    public Casilla[][] getTablero() {
         return tablero;
     }
+
+    public OchoReinasLogica(Casilla[][] tablero) {
+        this.tablero = tablero;
+    }
+    
     
     public boolean resolver(int fila) {
         return resolverColumna(fila, 0) && cont == 8;  // Comenzamos en la fila actual y en la primera columna (col = 0)
@@ -35,7 +43,7 @@ public class OchoReinasLogica {
 
         // Intentamos colocar la reina en la posición (fila, col) si es seguro hacerlo
         if (esSeguro(fila, col)) {
-            tablero[fila][col] = 1;  // Colocamos la reina en esta posición
+            tablero[fila][col].chanceEstado(Estado.OCUPADO);  // Colocamos la reina en esta posición
             cont++;
 
             // Llamamos recursivamente para colocar la siguiente reina en la siguiente fila
@@ -44,7 +52,7 @@ public class OchoReinasLogica {
             }
 
             // Si no encontramos una solución, deshacemos la colocación de la reina (backtracking)
-            tablero[fila][col] = 0;
+            tablero[fila][col].chanceEstado(Estado.VACIO);
             cont--;
         }
 
@@ -60,7 +68,7 @@ public class OchoReinasLogica {
         if (fila < 0) {
             return true;  // Caso base: Si hemos revisado todas las filas
         }
-        if (tablero[fila][col] == 1) {
+        if (tablero[fila][col].getEstado() == Estado.OCUPADO) {
             return false;  // Hay una reina en la misma columna
         }
         return revisarColumna(fila - 1, col);  // Llamada recursiva
@@ -70,7 +78,7 @@ public class OchoReinasLogica {
         if (fila < 0 || col < 0) {
             return true;  // Caso base: Fuera del tablero
         }
-        if (tablero[fila][col] == 1) {
+        if (tablero[fila][col].getEstado()== Estado.OCUPADO) {
             return false;  // Hay una reina en la diagonal izquierda
         }
         return revisarDiagonalIzquierda(fila - 1, col - 1);  // Llamada recursiva
@@ -80,7 +88,7 @@ public class OchoReinasLogica {
         if (fila < 0 || col >= N) {
             return true;  // Caso base: Fuera del tablero
         }
-        if (tablero[fila][col] == 1) {
+        if (tablero[fila][col].getEstado()== Estado.OCUPADO) {
             return false;  // Hay una reina en la diagonal derecha
         }
         return revisarDiagonalDerecha(fila - 1, col + 1);  // Llamada recursiva
