@@ -19,7 +19,7 @@ public class MainReinas {
         FrmTablero frm = new FrmTablero();
         OchoReinasLogica logica = new OchoReinasLogica(frm.getCasillas());
         frm.setVisible(true);
-        logica.resolver(0);
+        System.out.println(logica.resolver(0)? "":"No hay solucion");
         
     }
     

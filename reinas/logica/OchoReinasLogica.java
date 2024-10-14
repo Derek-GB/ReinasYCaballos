@@ -15,17 +15,12 @@ public class OchoReinasLogica {
 
     private static final int N = 8;
     private int cont = 0;
-    private Casilla [][] tablero;
-
-    public Casilla[][] getTablero() {
-        return tablero;
-    }
+    private Casilla[][] tablero;
 
     public OchoReinasLogica(Casilla[][] tablero) {
         this.tablero = tablero;
     }
-    
-    
+
     public boolean resolver(int fila) {
         return resolverColumna(fila, 0) && cont == 8;  // Comenzamos en la fila actual y en la primera columna (col = 0)
     }
@@ -39,6 +34,12 @@ public class OchoReinasLogica {
         // Si hemos recorrido todas las columnas y no encontramos una solución, devolvemos falso
         if (col >= N) {
             return false;
+        }
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            System.out.println("Algo salio terriblemente mal");
         }
 
         // Intentamos colocar la reina en la posición (fila, col) si es seguro hacerlo
@@ -78,7 +79,7 @@ public class OchoReinasLogica {
         if (fila < 0 || col < 0) {
             return true;  // Caso base: Fuera del tablero
         }
-        if (tablero[fila][col].getEstado()== Estado.OCUPADO) {
+        if (tablero[fila][col].getEstado() == Estado.OCUPADO) {
             return false;  // Hay una reina en la diagonal izquierda
         }
         return revisarDiagonalIzquierda(fila - 1, col - 1);  // Llamada recursiva
@@ -88,7 +89,7 @@ public class OchoReinasLogica {
         if (fila < 0 || col >= N) {
             return true;  // Caso base: Fuera del tablero
         }
-        if (tablero[fila][col].getEstado()== Estado.OCUPADO) {
+        if (tablero[fila][col].getEstado() == Estado.OCUPADO) {
             return false;  // Hay una reina en la diagonal derecha
         }
         return revisarDiagonalDerecha(fila - 1, col + 1);  // Llamada recursiva
