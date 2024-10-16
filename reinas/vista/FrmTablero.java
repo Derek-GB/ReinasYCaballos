@@ -4,6 +4,7 @@
  */
 package reinas.vista;
 
+import javax.swing.JToggleButton;
 import reinas.modelo.Casilla;
 import reinas.modelo.Estado;
 
@@ -28,6 +29,14 @@ public class FrmTablero extends javax.swing.JFrame {
 
     public Casilla[][] getCasillas() {
         return Casillas;
+    }
+
+    public JToggleButton getBtn() {
+        return btnUltCasilla;
+    }
+    
+    public JToggleButton getBtnC() {
+        return btnContinue;
     }
 
     /**
@@ -104,6 +113,8 @@ public class FrmTablero extends javax.swing.JFrame {
         jLabel62 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
         jLabel64 = new javax.swing.JLabel();
+        btnUltCasilla = new javax.swing.JToggleButton();
+        btnContinue = new javax.swing.JToggleButton();
         tablero1 = new javax.swing.JLabel();
 
         tablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MiniTablero.jpg"))); // NOI18N
@@ -176,12 +187,29 @@ public class FrmTablero extends javax.swing.JFrame {
         getContentPane().add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 40, 40));
         getContentPane().add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 40, 40));
 
+        btnUltCasilla.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnUltCasilla.setForeground(new java.awt.Color(255, 51, 0));
+        btnUltCasilla.setSelected(true);
+        btnUltCasilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltCasillaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnUltCasilla, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 70, 20));
+
+        btnContinue.setText(">>");
+        getContentPane().add(btnContinue, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 50, 20));
+
         tablero1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MiniTablero.jpg"))); // NOI18N
         tablero1.setText("jLabel1");
         getContentPane().add(tablero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnUltCasillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltCasillaActionPerformed
+        btnUltCasilla.setText("");
+    }//GEN-LAST:event_btnUltCasillaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +247,8 @@ public class FrmTablero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnContinue;
+    private javax.swing.JToggleButton btnUltCasilla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

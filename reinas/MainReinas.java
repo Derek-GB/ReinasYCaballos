@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package reinas.vista;
+package reinas;
 
 import reinas.logica.OchoReinasLogica;
+import reinas.vista.FrmTablero;
 
 /**
  *
@@ -17,7 +18,7 @@ public class MainReinas {
      */
     public static void main(String[] args) {
         FrmTablero frm = new FrmTablero();
-        OchoReinasLogica logica = new OchoReinasLogica(frm.getCasillas());
+        OchoReinasLogica logica = new OchoReinasLogica(frm.getCasillas(), frm.getBtn(), frm.getBtnC());
         frm.setVisible(true);
         System.out.println(logica.resolver(0)? "":"No hay solucion");
         
