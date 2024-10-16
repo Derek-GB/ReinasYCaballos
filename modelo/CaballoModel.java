@@ -24,11 +24,11 @@ public class CaballoModel {
         return (x >= 0 && y >= 0 && x < 8 && y < 8 && tablero[x][y] == -1);
     }
 
-    public boolean resolverProblema(int x, int y, int Contador) {
+    public boolean moverCaballo(int x, int y, int Contador) {
         
       //  System.out.println("Moviendo el caballo a (" + x + ", " + y + ") #Movimiento" + Contador);
         
-        if (Contador == 8 * 8) {
+        if (Contador == 64) {
             return true;
         }
 
@@ -40,7 +40,7 @@ public class CaballoModel {
                 
               //  System.out.println("Posición válida. Colocando el caballo en (" + X + ", " + Y + ")");
                 
-                if (resolverProblema(X, Y, Contador + 1)) {
+                if (moverCaballo(X, Y, Contador + 1)) {
                     return true;
                 }
                 

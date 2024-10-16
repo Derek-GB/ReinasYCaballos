@@ -38,7 +38,7 @@ public class Prueba {
             caballo.inicializarTablero();
             caballo.tablero[x][y] = 0; 
 
-            if (caballo.resolverProblema(x, y, 1)) {
+            if (caballo.moverCaballo(x, y, 1)) {
                 System.out.println("Solución encontrada:");
                 System.out.print("   ");
                 for (int col = 0; col < 8; col++) {
