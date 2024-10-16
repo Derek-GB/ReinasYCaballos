@@ -53,7 +53,7 @@ public class OchoReinasLogica {
             }
 
             // Si no encontra una solución, se quita de la reina (backtracking)
-            finalizadoEn(fila,col);
+            finalizadoEn(fila, col);
             tablero[fila][col].chanceEstado(Estado.VACIO);
             cont--;
         }
@@ -73,7 +73,8 @@ public class OchoReinasLogica {
         if (tablero[fila][col].getEstado() == Estado.OCUPADO) {
             return false;  // Hay una reina en la misma columna
         }
-        {/*tablero[fila][col].chanceEstado(Estado.BLOQUEADO);*/}
+        {/*tablero[fila][col].chanceEstado(Estado.BLOQUEADO);*/
+        }
         return revisarColumna(fila - 1, col);  // Llamada recursiva
     }
 
@@ -84,7 +85,8 @@ public class OchoReinasLogica {
         if (tablero[fila][col].getEstado() == Estado.OCUPADO) {
             return false;  // Hay una reina
         }
-        {/*tablero[fila][col].chanceEstado(Estado.BLOQUEADO);*/}
+        {/*tablero[fila][col].chanceEstado(Estado.BLOQUEADO);*/
+        }
         return revisarDiagonalIzquierda(fila - 1, col - 1);  // Llamada recursiva
     }
 
@@ -95,19 +97,20 @@ public class OchoReinasLogica {
         if (tablero[fila][col].getEstado() == Estado.OCUPADO) {
             return false;  // Hay una reina
         }
-        {/*tablero[fila][col].chanceEstado(Estado.BLOQUEADO);*/}
+        {/*tablero[fila][col].chanceEstado(Estado.BLOQUEADO);*/
+        }
         return revisarDiagonalDerecha(fila - 1, col + 1);  // Llamada recursiva
     }
 
-    private void finalizadoEn(int fila, int col){
-        botonF.setText(String.valueOf(fila+1) + ':' + String.valueOf(col+1));
-        botonF.setSelected(false); 
-        do{
+    private void finalizadoEn(int fila, int col) {
+        botonF.setText(String.valueOf(fila + 1) + ':' + String.valueOf(col + 1));
+        botonF.setSelected(false);
+        do {
             dormir();
-        } while(!botonF.isSelected() && !botonC.isSelected());
+        } while (!botonF.isSelected() && !botonC.isSelected());
     }
-    
-    private void dormir(){
+
+    private void dormir() {
         try {
             Thread.sleep(50);
         } catch (InterruptedException e) {
