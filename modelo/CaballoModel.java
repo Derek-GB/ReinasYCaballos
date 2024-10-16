@@ -12,51 +12,63 @@ import java.util.Arrays;
  */
 public class CaballoModel {
    
-    private static final int[][] MOVIMIENTOS_CABALLO = {
-        {2, 1}, {1, 2}, {-1, 2}, {-2, 1},
-        {-2, -1}, {-1, -2}, {1, -2}, {2, -1}
-    };
-
-    private int[][] tablero;
-    private boolean[][] visitados;
-    private int movimientos;
+   protected int[][] tablero;
+    private int[] movimientosX = {2, 1, -1, -2, -2, -1, 1, 2};
+    private int[] movimientosY = {1, 2, 2, 1, -1, -2, -2, -1};
 
     public CaballoModel() {
-        this.tablero = new int[8][8];
-        this.visitados = new boolean[8][8];
-        this.movimientos = 0;
+        tablero = new int[8][8];
     }
 
-    public boolean moverCaballo(int x, int y, int pasos) {
-        if (x < 0 || x >= 8|| y < 0 || y >= 8 || visitados[x][y]) {
-            return false; 
-        }
+    private boolean esValido(int x, int y) {
+        return (x >= 0 && y >= 0 && x < 8 && y < 8 && tablero[x][y] == -1);
+    }
 
-        visitados[x][y] = true;
-        tablero[x][y] = pasos;
-
-        if (pasos == 8 * 8 - 1) {
+    public boolean resolverProblema(int x, int y, int Contador) {
+        
+      //  System.out.println("Moviendo el caballo a (" + x + ", " + y + ") #Movimiento" + Contador);
+        
+        if (Contador == 8 * 8) {
             return true;
         }
 
-        for (int[] movimiento : MOVIMIENTOS_CABALLO) {
-            int nuevaX = x + movimiento[0];
-            int nuevaY = y + movimiento[1];
-
-            if (moverCaballo(nuevaX, nuevaY, pasos + 1)) {
-                return true; 
+        for (int i = 0; i < 8; i++) {
+            int X = x + movimientosX[i];
+            int Y = y + movimientosY[i];
+            if (esValido(X, Y)) {
+                tablero[X][Y] = Contador;
+                
+              //  System.out.println("Posición válida. Colocando el caballo en (" + X + ", " + Y + ")");
+                
+                if (resolverProblema(X, Y, Contador + 1)) {
+                    return true;
+                }
+                
+                //System.out.println("Backtracking desde (" + X + ", " + Y + ")");
+                
+                tablero[X][Y] = -1;
             }
         }
-        visitados[x][y] = false;
-        tablero[x][y] = 0;
-        return false; 
+        return false;
     }
 
-    public void mostrarTablero() {
-        for (int[] fila : tablero) {
-            System.out.println(Arrays.toString(fila));
+
+    public void inicializarTablero() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                tablero[i][j] = -1;
+            }
         }
-        System.out.println();
+    }
+
+
+    public void mostrarTablero() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                System.out.print(String.format("%2d ", tablero[i][j]));
+            }
+            System.out.println();
+        }
     }
 
   

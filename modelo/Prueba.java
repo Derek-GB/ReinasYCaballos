@@ -16,33 +16,55 @@ public class Prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Scanner scanner = new Scanner(System.in);
-        CaballoModel caballo;
+         CaballoModel caballo = new CaballoModel();
+        caballo.inicializarTablero();
+
+        Scanner scannerX = new Scanner(System.in);
+        Scanner scannerY = new Scanner(System.in);
 
         while (true) {
-            caballo = new CaballoModel();
+            System.out.println("Ingrese la ubicación inicial del caballo.");
+            System.out.print("X (entre 0 y 7):");
+            int x = scannerX.nextInt();
+            
+            System.out.print("Y (entre 0 y 7)");
+            int y = scannerY.nextInt();
 
-            System.out.print("Ingrese la posición inicial del caballo (x) o un valor negativo para salir: ");
-            int inicioX = scanner.nextInt();
-
-            if (inicioX < 0) {
+            if (x < 0 || y < 0) {
+                System.out.println("Cerrando programa..");
                 break;
             }
 
-            System.out.print("Ingrese la posición inicial del caballo (y): ");
-            int inicioY = scanner.nextInt();
-            if (inicioX < 0 || inicioX >= 8 || inicioY < 0 || inicioY >= 8) {
-                System.out.println("Las posiciones deben estar entre 0 y 7 .");
-            } else {
-                if (caballo.moverCaballo(inicioX, inicioY, 0)) {
-                    System.out.println("Tablero final con el mejor resultado:");
-                    caballo.mostrarTablero();
-                } else {
-                    System.out.println("No se encontró un camino para el caballo.");
+            caballo.inicializarTablero();
+            caballo.tablero[x][y] = 0; 
+
+            if (caballo.resolverProblema(x, y, 1)) {
+                System.out.println("Solución encontrada:");
+                System.out.print("   ");
+                for (int col = 0; col < 8; col++) {
+                    System.out.print("  " + col + " ");
                 }
+                System.out.println();
+
+                System.out.println("  +" + "----".repeat(8) + "+");
+
+                for (int i = 0; i < 8; i++) {
+                    System.out.print(i + " |");
+                    for (int j = 0; j < 8; j++) {
+                        if (caballo.tablero[i][j] == -1) {
+                            System.out.print("   |");
+                        } else {
+                            System.out.print(String.format("%2d |", caballo.tablero[i][j]));
+                        }
+                    }
+                    System.out.println();
+                    System.out.println("  +" + "----".repeat(8) + "+");
+                }
+            } else {
+                System.out.println("No hay solución posible desde esta posición.");
             }
         }
-        scanner.close();
-        System.out.println("Saliendo del programa.");
+        scannerX.close();
+        scannerY.close();
     }
 }
