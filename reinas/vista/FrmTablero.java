@@ -4,6 +4,10 @@
  */
 package reinas.vista;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JToggleButton;
 import reinas.modelo.Casilla;
 import reinas.modelo.Estado;
@@ -19,16 +23,7 @@ public class FrmTablero extends javax.swing.JFrame {
      */
     public FrmTablero() {
         initComponents();
-        inicializarCasillas();
-        //prueba de ejemplo
-//        Casillas[0][1].chanceEstado(Estado.OCUPADO);
-//        Casillas[2][2].chanceEstado(Estado.OCUPADO);
-        
-
-    }
-
-    public Casilla[][] getCasillas() {
-        return Casillas;
+        inicializarcasillas();
     }
 
     public JToggleButton getBtn() {
@@ -39,6 +34,26 @@ public class FrmTablero extends javax.swing.JFrame {
         return btnContinue;
     }
 
+    public void chanceFicha(int fila, int col, Estado estado){
+        switch (estado) {
+            case (Estado.OCUPADO) -> {
+                ajustarImagen("/imagenes/reina.png", casillas[fila][col]);
+            }
+            case (Estado.BLOQUEADO) -> {
+                ajustarImagen("/imagenes/bloqueada.png", casillas[fila][col]);
+            }
+            case (Estado.VACIO) -> {
+                casillas[fila][col].setIcon(null);
+            }
+        }
+    }
+    
+    private void ajustarImagen(String ubicacion, javax.swing.JLabel casilla) {
+        ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(casilla.getWidth(), casilla.getHeight(), Image.SCALE_DEFAULT));
+        casilla.setIcon(icon);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -317,73 +332,73 @@ public class FrmTablero extends javax.swing.JFrame {
     private javax.swing.JLabel tablero1;
     // End of variables declaration//GEN-END:variables
 
-    private Casilla[][] Casillas = new Casilla[8][8];
+    private JLabel[][] casillas = new JLabel[8][8];
 
-    private void inicializarCasillas() {
-        Casillas[0][0] = new Casilla(jLabel1);
-        Casillas[0][1] = new Casilla(jLabel2);
-        Casillas[0][2] = new Casilla(jLabel3);
-        Casillas[0][3] = new Casilla(jLabel4);
-        Casillas[0][4] = new Casilla(jLabel5);
-        Casillas[0][5] = new Casilla(jLabel6);
-        Casillas[0][6] = new Casilla(jLabel7);
-        Casillas[0][7] = new Casilla(jLabel8);
-        Casillas[1][0] = new Casilla(jLabel9);
-        Casillas[1][1] = new Casilla(jLabel10);
-        Casillas[1][2] = new Casilla(jLabel11);
-        Casillas[1][3] = new Casilla(jLabel12);
-        Casillas[1][4] = new Casilla(jLabel13);
-        Casillas[1][5] = new Casilla(jLabel14);
-        Casillas[1][6] = new Casilla(jLabel15);
-        Casillas[1][7] = new Casilla(jLabel16);
-        Casillas[2][0] = new Casilla(jLabel17);
-        Casillas[2][1] = new Casilla(jLabel18);
-        Casillas[2][2] = new Casilla(jLabel19);
-        Casillas[2][3] = new Casilla(jLabel20);
-        Casillas[2][4] = new Casilla(jLabel21);
-        Casillas[2][5] = new Casilla(jLabel22);
-        Casillas[2][6] = new Casilla(jLabel23);
-        Casillas[2][7] = new Casilla(jLabel24);
-        Casillas[3][0] = new Casilla(jLabel25);
-        Casillas[3][1] = new Casilla(jLabel26);
-        Casillas[3][2] = new Casilla(jLabel27);
-        Casillas[3][3] = new Casilla(jLabel28);
-        Casillas[3][4] = new Casilla(jLabel29);
-        Casillas[3][5] = new Casilla(jLabel30);
-        Casillas[3][6] = new Casilla(jLabel31);
-        Casillas[3][7] = new Casilla(jLabel32);
-        Casillas[4][0] = new Casilla(jLabel33);
-        Casillas[4][1] = new Casilla(jLabel34);
-        Casillas[4][2] = new Casilla(jLabel35);
-        Casillas[4][3] = new Casilla(jLabel36);
-        Casillas[4][4] = new Casilla(jLabel37);
-        Casillas[4][5] = new Casilla(jLabel38);
-        Casillas[4][6] = new Casilla(jLabel39);
-        Casillas[4][7] = new Casilla(jLabel40);
-        Casillas[5][0] = new Casilla(jLabel41);
-        Casillas[5][1] = new Casilla(jLabel42);
-        Casillas[5][2] = new Casilla(jLabel43);
-        Casillas[5][3] = new Casilla(jLabel44);
-        Casillas[5][4] = new Casilla(jLabel45);
-        Casillas[5][5] = new Casilla(jLabel46);
-        Casillas[5][6] = new Casilla(jLabel47);
-        Casillas[5][7] = new Casilla(jLabel48);
-        Casillas[6][0] = new Casilla(jLabel49);
-        Casillas[6][1] = new Casilla(jLabel50);
-        Casillas[6][2] = new Casilla(jLabel51);
-        Casillas[6][3] = new Casilla(jLabel52);
-        Casillas[6][4] = new Casilla(jLabel53);
-        Casillas[6][5] = new Casilla(jLabel54);
-        Casillas[6][6] = new Casilla(jLabel55);
-        Casillas[6][7] = new Casilla(jLabel56);
-        Casillas[7][0] = new Casilla(jLabel57);
-        Casillas[7][1] = new Casilla(jLabel58);
-        Casillas[7][2] = new Casilla(jLabel59);
-        Casillas[7][3] = new Casilla(jLabel60);
-        Casillas[7][4] = new Casilla(jLabel61);
-        Casillas[7][5] = new Casilla(jLabel62);
-        Casillas[7][6] = new Casilla(jLabel63);
-        Casillas[7][7] = new Casilla(jLabel64);
+    private void inicializarcasillas() {
+        casillas[0][0] = jLabel1;
+        casillas[0][1] = jLabel2;
+        casillas[0][2] = jLabel3;
+        casillas[0][3] = jLabel4;
+        casillas[0][4] = jLabel5;
+        casillas[0][5] = jLabel6;
+        casillas[0][6] = jLabel7;
+        casillas[0][7] = jLabel8;
+        casillas[1][0] = jLabel9;
+        casillas[1][1] = jLabel10;
+        casillas[1][2] = jLabel11;
+        casillas[1][3] = jLabel12;
+        casillas[1][4] = jLabel13;
+        casillas[1][5] = jLabel14;
+        casillas[1][6] = jLabel15;
+        casillas[1][7] = jLabel16;
+        casillas[2][0] = jLabel17;
+        casillas[2][1] = jLabel18;
+        casillas[2][2] = jLabel19;
+        casillas[2][3] = jLabel20;
+        casillas[2][4] = jLabel21;
+        casillas[2][5] = jLabel22;
+        casillas[2][6] = jLabel23;
+        casillas[2][7] = jLabel24;
+        casillas[3][0] = jLabel25;
+        casillas[3][1] = jLabel26;
+        casillas[3][2] = jLabel27;
+        casillas[3][3] = jLabel28;
+        casillas[3][4] = jLabel29;
+        casillas[3][5] = jLabel30;
+        casillas[3][6] = jLabel31;
+        casillas[3][7] = jLabel32;
+        casillas[4][0] = jLabel33;
+        casillas[4][1] = jLabel34;
+        casillas[4][2] = jLabel35;
+        casillas[4][3] = jLabel36;
+        casillas[4][4] = jLabel37;
+        casillas[4][5] = jLabel38;
+        casillas[4][6] = jLabel39;
+        casillas[4][7] = jLabel40;
+        casillas[5][0] = jLabel41;
+        casillas[5][1] = jLabel42;
+        casillas[5][2] = jLabel43;
+        casillas[5][3] = jLabel44;
+        casillas[5][4] = jLabel45;
+        casillas[5][5] = jLabel46;
+        casillas[5][6] = jLabel47;
+        casillas[5][7] = jLabel48;
+        casillas[6][0] = jLabel49;
+        casillas[6][1] = jLabel50;
+        casillas[6][2] = jLabel51;
+        casillas[6][3] = jLabel52;
+        casillas[6][4] = jLabel53;
+        casillas[6][5] = jLabel54;
+        casillas[6][6] = jLabel55;
+        casillas[6][7] = jLabel56;
+        casillas[7][0] = jLabel57;
+        casillas[7][1] = jLabel58;
+        casillas[7][2] = jLabel59;
+        casillas[7][3] = jLabel60;
+        casillas[7][4] = jLabel61;
+        casillas[7][5] = jLabel62;
+        casillas[7][6] = jLabel63;
+        casillas[7][7] = jLabel64;
     }
 
 }

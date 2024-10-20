@@ -7,6 +7,7 @@ package reinas.logica;
 import javax.swing.JToggleButton;
 import reinas.modelo.Casilla;
 import reinas.modelo.Estado;
+import reinas.vista.FrmTablero;
 
 /**
  *
@@ -18,11 +19,22 @@ public class OchoReinasLogica {
     private int cont = 0;
     private Casilla[][] tablero;
     private JToggleButton botonF, botonC;
+    private FrmTablero frm;
 
-    public OchoReinasLogica(Casilla[][] tablero, JToggleButton boton, JToggleButton botonC) {
-        this.tablero = tablero;
-        this.botonF = boton;
-        this.botonC = botonC;
+    public OchoReinasLogica(FrmTablero frm) {
+        this.tablero = new Casilla[N][N];
+        inicializarCasillas();
+        this.botonF = frm.getBtn();
+        this.botonC = frm.getBtnC();
+        this.frm = frm;
+    }
+    
+    private void inicializarCasillas() {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                tablero[i][j] = new Casilla();
+            }
+        }
     }
 
     public boolean resolver(int fila) {
@@ -44,7 +56,8 @@ public class OchoReinasLogica {
 
         // Se revisa si la casilla es segura
         if (esSeguro(fila, col)) {
-            tablero[fila][col].chanceEstado(Estado.OCUPADO);  // Se coloca una reina en la posicion
+            tablero[fila][col].setEstado(Estado.OCUPADO);  // Se coloca una reina en la posicion
+            frm.chanceFicha(fila, col, Estado.OCUPADO);
             cont++;
 
             // Llamada recursiva para colocar una reina en la siguiente fila
@@ -54,7 +67,8 @@ public class OchoReinasLogica {
 
             // Si no encontra una solución, se quita de la reina (backtracking)
             finalizadoEn(fila, col);
-            tablero[fila][col].chanceEstado(Estado.VACIO);
+            tablero[fila][col].setEstado(Estado.VACIO);
+            frm.chanceFicha(fila, col, Estado.VACIO);
             cont--;
         }
 
